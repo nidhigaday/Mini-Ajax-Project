@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Moving Companion</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.6" type="text/css" media="screen" />
+    <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.6"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+</head>
+
+<body>
+    <div class="search-bar">
+        <form id="form-container" class="form-container">
+            <label for="street">Street: </label>
+            <input type="text" id="street" value="Menlo Park">
+            <label for="city">City: </label>
+            <input type="text" id="city" value="Santa Clara">
+            <button id="submit-btn">Submit</button>
+        </form>
+    </div>
+    <h1 id="greeting" class="greeting">Where do you want to live?</h1>
+    <div class="content">
+        <div class="nytimes-container">
+            <h2 id="nytimes-header">New York Times Articles</h2>
+            <ul id="nytimes-articles" class="article-list"></ul>
+        </div>
+        <div class="wikipedia-container">
+            <div class="yelpBox">
+                <h2 id="yelp-header">Restaurants Nearby<span></span></h2>
+                <ul id="yelp-links" class="links-list yelp"></ul>
+            </div>
+            <div class="wikiBox">
+                <h2 id="wikipedia-header">Relevant Wikipedia Links<span></span></h2>
+                <ul id="wikipedia-links" class="links-list wiki"></ul>
+            </div>
+            <div>
+                <h2>Images</h2>
+                <div id="image-header" class="image-header"></div>
+            </div>
+        </div>
+    </div>
+    <!--<script src="js/libs/jquery.min.js"></script>-->
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+    <script src="node_modules/oauth-signature/dist/oauth-signature.js"></script>
+</body>
+
+</html>
