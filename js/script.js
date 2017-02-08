@@ -21,8 +21,6 @@ function loadData() {
 
     var apiKey = config.apiKey;
     var streetViewUrl = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + address + "&key=" + apiKey;
-    var fancyboxImage = streetViewUrl + new Date().getTime();
-    console.log(fancyboxImage);
 
     //append images to backgroung and div
     $banner.append('<img class="bgimg" alt="streetview" src="' + streetViewUrl + '">');
@@ -48,15 +46,13 @@ function loadData() {
         //console.log(articles);
         for (var i = 0; i < articles.length; i++) {
             var article = articles[i];
-            // console.log(article);
             var snippet = article.snippet;
-            // console.log(snippet);
             if (snippet !== null) {
                 $nytElem.append('<li class="articles">' +
                     '<a target="_blank" href="' + article.web_url + '">' +
                     '<h3>' + article.headline.main + '</h3>' +
                     '</a>' +
-                    '<p>' + article.snippet + '</p>' +
+                    '<p>' + snippet + '</p>' +
                     '</li>');
             } else {
                 $nytElem.append('<li class="articles">' +
@@ -74,7 +70,7 @@ function loadData() {
     //-----------------------------------------load Wiki Arlicle Search-------------------------------------------
 
     var Wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + cityStr + "&format=json&callback=wikiCallback";
-    console.log(Wikiurl);
+    // console.log(Wikiurl);
 
     var wikiRequestTimeout = setTimeout(function() {
         $wikiElem.text('Failed to get Wikipedia Resources');
@@ -84,7 +80,6 @@ function loadData() {
         url: Wikiurl,
         dataType: 'jsonp'
     }).done(function(data) {
-        //console.log(data.length);
         for (i = 0; i < data.length; i++) {
             var wikiTitle = data[1][i];
             var wikiUrl = data[3][i];
@@ -101,7 +96,6 @@ function loadData() {
     //---------------------------------------------Load Yelp API-------------------------------------------------
 
     var n = new Date().getTime();
-    console.log(n);
     var generateNonce = function(length) {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -113,10 +107,6 @@ function loadData() {
     var nounceString = generateNonce(16);
     // location value to generate a signature
     var yLocation = cityStr.replace(" ", "+");
-    // location value for the URL
-    var yelpLocation = cityStr.replace(" ", "%2B");
-    console.log(yelpLocation);
-    console.log(nounceString);
 
     //values required generate signature
     var Method = 'GET',
@@ -130,8 +120,8 @@ function loadData() {
             oauth_version: '1.0',
             location: yLocation, //optional but required if not using 'term': (value) for search. else will get error
             callback: 'cb' //callback is required as Yelp follows CORS.
-        };
-    var consumer_Secret = config.Consumer_Secret, // unique key to each api account - must include
+        },
+        consumer_Secret = config.Consumer_Secret, // unique key to each api account - must include
         token_Secret = config.Token_Secret, // unique key to each api account - must include
         // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash-------------oauth_signature
         encodedSignature = oauthSignature.generate(Method, yurl, parameters, consumer_Secret, token_Secret);
@@ -157,9 +147,7 @@ function loadData() {
         cache: true // cache is crucial. It prevents jQuery from adding on a cache-buster parameter"_=23489489749837",
             // which invalidats our oauth-signature
     }).done(function(results) { //since success property of ajax request is depricated, used done function once request is successful
-        //console.log(results);
         var restaurants = results['businesses'];
-        console.log(restaurants);
         for (var x = 0; x < restaurants.length; x++) {
             var yelpTitle = restaurants[x]['name'];
             var yelpUrl = restaurants[x]['url'];
@@ -192,9 +180,9 @@ $('h2#wikipedia-header').click(function() {
 
 $(document).ready(function() {
     $(".fancybox").fancybox({
-         afterRender: function() {
-             this.href = this.href + "?v=" + new Date().getTime();
-         },
+        beforeRender: function() {
+            this.href = this.href + "?v=" + new Date().getTime();
+        },
         'type': "image"
     });
 });
