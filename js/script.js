@@ -18,8 +18,8 @@ function loadData() {
 
     $greeting.text("So, you would like to move to " + address + "?");
 
-    // var apiKey = "AIzaSyD5Et3G-0OOF0B4ER5zHiM19kZo2xXfdO4";
-    var apiKey = coonfig.apiKey;
+
+    var apiKey = config.apiKey;
     var streetViewUrl = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + address + "&key=" + apiKey;
     var fancyboxImage = streetViewUrl + new Date().getTime();
     console.log(fancyboxImage);
@@ -37,8 +37,7 @@ function loadData() {
 
     //-----------------------------------------load NYT Arlicle Search---------------------------------------------
 
-    //var NYTapiKey = "3d20415456d2153f63e3b1c268f9d940:5:73617106";
-    //var NYTapiKey = "e15d65400bed43469eb44fd08e475b3a";
+
     var NYTapiKey = config.NYTapiKey;
     var NYTurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + cityStr + "&sort=newest&api-key=e15d65400bed43469eb44fd08e475b3a";
 
@@ -100,13 +99,7 @@ function loadData() {
 
 
     //---------------------------------------------Load Yelp API-------------------------------------------------
-    // var auth = {
-    //     "Consumer_Key": "ozZGFps-eIx-vXl1ROf4hA",
-    //     "Consumer_Secret": "0pUUUKeY3j1P88bz55nr7LN1J5w",
-    //     "Token": "oZ7hinuN_4xr5hmrNw8k-SFBGYNdFdHj",
-    //     "Token_Secret": "Z5OdBXDGliNWv9KrtLfr7XPYujQ"
-    // };
-    //var d = new Date();
+
     var n = new Date().getTime();
     console.log(n);
     var generateNonce = function(length) {
@@ -129,8 +122,8 @@ function loadData() {
     var Method = 'GET',
         yurl = 'https://api.yelp.com/v2/search',
         parameters = { // following parameters are required to obtain a oauth_signature for our request
-            oauth_consumer_key: config.Consumer_Key,   //'ozZGFps-eIx-vXl1ROf4hA',
-            oauth_token: config.Token,   //'oZ7hinuN_4xr5hmrNw8k-SFBGYNdFdHj',
+            oauth_consumer_key: config.Consumer_Key,
+            oauth_token: config.Token,
             oauth_nonce: nounceString,
             oauth_timestamp: n,
             oauth_signature_method: 'HMAC-SHA1',
@@ -138,10 +131,10 @@ function loadData() {
             location: yLocation, //optional but required if not using 'term': (value) for search. else will get error
             callback: 'cb' //callback is required as Yelp follows CORS.
         };
-    var consumer_Secret = config.Consumer_Secret,   //'0pUUUKeY3j1P88bz55nr7LN1J5w'; // unique key to each api account - must include
-    token_Secret = config.Token_Secret,   //'Z5OdBXDGliNWv9KrtLfr7XPYujQ'; // unique key to each api account - must include
-    // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash-------------oauth_signature
-    encodedSignature = oauthSignature.generate(Method, yurl, parameters, consumer_Secret, token_Secret);
+    var consumer_Secret = config.Consumer_Secret, // unique key to each api account - must include
+        token_Secret = config.Token_Secret, // unique key to each api account - must include
+        // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash-------------oauth_signature
+        encodedSignature = oauthSignature.generate(Method, yurl, parameters, consumer_Secret, token_Secret);
     console.log(encodedSignature);
     parameters['oauth_signature'] = encodedSignature; // added oauth_signature value to the set of data - parameters
     console.log(parameters);
@@ -199,9 +192,9 @@ $('h2#wikipedia-header').click(function() {
 
 $(document).ready(function() {
     $(".fancybox").fancybox({
-        beforeLoad: function() {
-            this.href = this.href + "?v=" + new Date().getTime();
-        },
+         afterRender: function() {
+             this.href = this.href + "?v=" + new Date().getTime();
+         },
         'type': "image"
     });
 });
