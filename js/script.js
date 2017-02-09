@@ -19,7 +19,7 @@ function loadData() {
     $greeting.text("So, you would like to move to " + address + "?");
 
 
-    var apiKey = config.apiKey;
+    //var apiKey = config.apiKey;
     var streetViewUrl = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + address + "&key=" + apiKey;
 
     //append images to backgroung and div
@@ -36,8 +36,8 @@ function loadData() {
     //-----------------------------------------load NYT Arlicle Search---------------------------------------------
 
 
-    var NYTapiKey = config.NYTapiKey;
-    var NYTurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + cityStr + "&sort=newest&api-key=" + NYTapiKey;
+    //var NYTapiKey = config.NYTapiKey;
+    var NYTurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + cityStr + "&sort=newest&api-key=e15d65400bed43469eb44fd08e475b3a";
 
     $nytHeaderElem.text('New York Times Articles About ' + cityStr);
 
