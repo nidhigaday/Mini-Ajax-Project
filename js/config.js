@@ -6,9 +6,10 @@ var config = {
     Token: "ioihnpgeirhfvlifdv",
     Token_Secret: "hgiuergboeudjhgrbdf"
 };
-//var NYTapiKey = "3d204154fgvbhnjnbhgvftcdrctfvygubh617106";
+
 var apiKey = config.apiKey,
     NYTapiKey = config.NYTapiKey;
+
 var parameters = {
     oauth_consumer_key: config.Consumer_Key,
     oauth_token: config.Token,
