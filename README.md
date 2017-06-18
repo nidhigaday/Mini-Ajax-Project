@@ -1,5 +1,5 @@
 # Mini-Ajax-Project
-###https://nidhigaday.github.io/Mini-Ajax-Project/
+https://nidhigaday.github.io/Mini-Ajax-Project/
 
 Used API keys to pull data from Same and Cross origin requests.
 <br>Language used - Javascript
