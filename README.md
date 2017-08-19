@@ -59,7 +59,7 @@ You may receive Invalid Signature or location error with the Yelp API. An error 
 
 There can be many causes an error occurs like data not available. For these cases, I implement a request failure message. To achieve this, I used setTimeout() and clearTimeout().
 
-### API Keys Handling
+## API Keys Handling
 
 API Keys are sensitive information. While working with Javascript, there is no robust way to hide the information in client-side single page application. One way is to save API keys on a server and call information in your application. Since this is only Front-end based application, I did not add keys. I used .gitignore to ignore the file with key data.
 
